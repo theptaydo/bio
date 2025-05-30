@@ -1,24 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting...</title>
-  <script>
-    window.onload = function () {
-      // Lấy URL hiện tại
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id');
+  <title>Đang chuyển hướng...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(to right, #3366cc, #9966cc);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-      if (id) {
-        // Chuyển hướng sang trang mới kèm ID
-        window.location.href = `https://bio.theptaydo.vn?id=${encodeURIComponent(id)}`;
-      } else {
-        document.body.innerHTML = '<h2>❌ Không tìm thấy ID trong URL!</h2>';
-      }
-    };
-  </script>
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #ffffff10 25%, #ffffff30 50%, #ffffff10 75%);
+      background-size: 400% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+
+    .avatar-skeleton {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .name-skeleton {
+      width: 60%;
+      height: 16px;
+    }
+
+    .role-skeleton {
+      width: 40%;
+      height: 14px;
+    }
+
+    .line-skeleton {
+      width: 100%;
+      height: 38px;
+      border-radius: 6px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+  </style>
 </head>
 <body>
-  <h2>🔄 Đang chuyển hướng...</h2>
+  <div class="card">
+    <div class="skeleton avatar-skeleton"></div>
+    <div class="skeleton name-skeleton"></div>
+    <div class="skeleton role-skeleton"></div>
+
+    <div style="margin-top: 20px; width: 100%;">
+      <div class="skeleton line-skeleton"></div>
+      <div class="skeleton line-skeleton"></div>
+      <div class="skeleton line-skeleton"></div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    if (id) {
+      // Redirect ngay, skeleton sẽ hiển thị trong lúc trình duyệt xử lý
+      window.location.href = `https://theptaydo.vn?id=${encodeURIComponent(id)}`;
+    }
+  </script>
 </body>
 </html>
